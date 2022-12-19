@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'processor'
 
@@ -6,23 +8,31 @@ describe Processor do
 
   let(:method) { :add }
   let(:field) { :value }
-  let(:records) { [] }
+  let(:records) { [{ value: 99 }] }
 
-  describe "#do_work" do
-    context "with no records" do
-      it "should produce 0" do
+  describe '#do_work' do
+    context 'with no records' do
+      before do
+        expect(subject).to receive(:values).and_return([])
+      end
+
+      it 'produces 0' do
         expect(subject.do_work).to eq(0)
       end
     end
 
-    context "unknown method" do
+    context 'unknown method' do
       let(:method) { :something_weird }
 
-      it "should raise an exception" do
-        expect {
+      it 'raises an exception' do
+        expect do
           subject.do_work
-        }.to raise_error(Processor::UnexpectedMethod)
+        end.to raise_error(Processor::UnexpectedMethod)
       end
+    end
+
+    context 'with records' do
+      # ...
     end
   end
 end
