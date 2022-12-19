@@ -1,0 +1,111 @@
+require:
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.6
+  NewCops: disable
+
+################################################################################
+# rspec-rubocop configuration
+#
+# rspec-rubocop is not part of the relaxed-ruby styleguide, so the checks in that
+# gem can be a bit louder than usual.  We customize our configuration of this
+# set of checks to be fairly loose, while still encouraging some consistency
+# across our test suite.  The goal of these checks, in order, is to:
+#
+# 1. Do not discourage people from writing tests with excessive checks.
+# 2. Ensure that we are not setting ourselves up for failure due to rspec gotchas.
+# 3. Move our test suite towards best practices when possible.
+#
+# If you are disabling a check here, please add a small comment explaining some
+# of the reasoning for why we are
+################################################################################
+
+# Sometimes a longer example is easier to understand than a shorter example.  Use
+# your discretion.
+RSpec/ExampleLength:
+  Enabled: false
+
+# Sometimes, tests are more expressive if they check multiple things within the
+# same test, especially when the fields are related.  When possible, aim for one
+# expectation per test when it makes sense, but clarity of tests is the goal!
+RSpec/MultipleExpectations:
+  Enabled: false
+
+# Our application needs a lot of complex data to set up different scenarios.
+# Restricting the amount of `let` helpers you can use can prevent you from writing
+# clear and effective tests of complex scenarios.
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+# Using `let!` to set up data can be a useful technique, especially given the
+# complexities in our data model.  It is often clearer to keep your setup code
+# consistently using `let` and `let!` instead of sprinkling setup between `let`
+# helpers and `before` blocks.
+RSpec/LetSetup:
+  Enabled: false
+
+# Sometimes, named subjects are easier to read.  Other times, they are not.  Use
+# your discretion about which one is right for your use case.
+RSpec/NamedSubject:
+  Enabled: false
+
+# Deeply nested test blocks can be a bad sign, but it can also be the clearest
+# way to express the behavior under test.  Try to keep test contexts fairly flat
+# when possible, but don't worry if you breach an arbitrary threshold.
+RSpec/NestedGroups:
+  Enabled: false
+
+# Starting context blocks with when, with, or without is a good pattern to keep
+# in mind, but is not a hard requirement to enforce.
+RSpec/ContextWording:
+  Enabled: false
+
+# Using expect(..).to have_received() after setting up the mock with allow(..)
+# can be be duplicative and most times unnecessary without adhering to AAA practices
+# and should not be enforced
+RSpec/MessageSpies:
+  Enabled: true
+  EnforcedStyle: receive
+
+# It is necessary sometimes to use before/after(:all) to setup things.  When
+# possible, prefer `let` or `before(:each)` blocks, but sometimes you just need
+# to do something before all.
+RSpec/BeforeAfterAll:
+  Enabled: false
+
+# While it is best practice to have explicit mocks on objects, the recurly-app
+# codebase does not make it easy to do so -- we often need to mock services that
+# are several levels deep into method calls.  When appropriate, you can use
+# (allow|expect)_any_instance_of calls, but they should be used sparingly.
+RSpec/AnyInstance:
+  Enabled: false
+
+# Consistently using blocks for `expect { }.to change { }` calls means that
+# developers don't have to think about which syntax to use.
+RSpec/ExpectChange:
+  EnforcedStyle: block
+
+# Instance variables for test setup are an anti-pattern, but we use them in
+# some places.  Preventing new instance variables from being created will help
+# prevent this from spreading while not forcing large scale test refactoring for
+# changes that will impact specs which use instance variables.
+RSpec/InstanceVariable:
+  AssignmentOnly: false
+
+# Leading subject vs. trailing subject is a preference.  We tend to use trailing
+# subjects in a lot of existing code.  I wish there was a way to enforce trailing
+# but the best we can do is disable this check.
+RSpec/LeadingSubject:
+  Enabled: false
+
+# `expect(x).to receive(y).and_return(z)` is nice and consise, but sometimes
+# you want to or need to use the block syntax.  Not worth enforcing consistency
+# on this.
+RSpec/ReturnFromStub:
+  Enabled: false
+
+# We have mixed usage of `var_1`, `var1`, and `var_one` across our test suite.
+# Use which ever one is most clear within the context of your tests.
+RSpec/VariableName:
+  Enabled: false
