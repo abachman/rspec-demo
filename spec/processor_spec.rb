@@ -31,8 +31,6 @@ describe Processor do
       end
     end
 
-    context 'with records' do
-      # ...
-    end
+    pending 'with records'
   end
 end
