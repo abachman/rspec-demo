@@ -7,39 +7,38 @@ require 'processor'
 # Question: what order do you think they'll appear in?
 
 describe Processor do
-  before { skip }
-
-  puts 'describe Processor'
+  # before { skip }
+  puts '>describe Processor'
 
   subject {
-    puts 'subject'
+    puts '>  subject'
     described_class.new(records: records, method: method, field: field)
   }
 
   let(:method) {
-    puts "let(:method)"
+    puts '>  let(:method)'
     :add
   }
   let(:field) {
-    puts "let(:field)"
+    puts '>  let(:field)'
     :value
   }
   let(:records) {
-    puts "let(:records)"
+    puts '>  let(:records)'
     [{ value: 99 }]
   }
 
   describe '#do_work' do
-    puts 'describe #do_work'
+    puts ">  describe '#do_work'"
     context 'with no records' do
-      puts "context 'with no records'"
+      puts ">    context 'with no records'"
       before do
-        puts 'before'
+        puts '>      before'
         expect(subject).to receive(:values).and_return([])
       end
 
       it 'produces 0' do
-        puts "it 'produces 0'"
+        puts ">      it 'produces 0'"
         expect(subject.do_work).to eq(0)
       end
     end
