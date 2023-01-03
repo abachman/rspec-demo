@@ -74,9 +74,9 @@ RSpec/MessageSpies:
 RSpec/BeforeAfterAll:
   Enabled: false
 
-# While it is best practice to have explicit mocks on objects, the recurly-app
-# codebase does not make it easy to do so -- we often need to mock services that
-# are several levels deep into method calls.  When appropriate, you can use
+# While it is best practice to have explicit mocks on objects, some codebases do
+# not make it easy to do so -- we often need to mock services that are several
+# levels deep into method calls.  When appropriate, you can use
 # (allow|expect)_any_instance_of calls, but they should be used sparingly.
 RSpec/AnyInstance:
   Enabled: false
