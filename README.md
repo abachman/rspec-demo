@@ -3,30 +3,35 @@
 - what is the goal?
 - why write tests?
   - communication
+  - verify new work
+    - "I'm pretty sure this is going to work" :-1:
+    - "This will work" :+1:
   - fixing bugs
     - "why did this break?"
     - "this should/must never break like this again"
-  - solidify assumptions
+  - solidify assumptions about existing code
     - "what does this code believe is always true?"
 - thinking with a test first mind
 
 ## Basic Rspec
 
 - basic syntax and structure
-- (there is (almost) always) more than one way to do it
-  - Practical Example: spec/processor_spec vs. spec/simpler_processor_spec.rb
+- (there is (almost) always) more than one way to do it, there are a lot of right answers
+  - Practical example: spec/processor_spec vs. spec/simpler_processor_spec.rb
     - what's the difference?
     - what problems will we run into?
+- order of operations (scopes)
+  - Practical example: `rspec spec/calling_order_spec.rb`
 
 ## Fighting with rspec + rubocop (incidental complexity)
 
-- Practical Example: run rubocop on spec/processor_spec.rb
-- what is the goal of this tool?
+- Practical example: `rubocop spec/processor_spec.rb`
+- what is the actual goal of this tool?
 
 ## Advanced testing
 
 - code coverage
-  - Practical Example: check ./coverage folder after running suite
+  - Practical example: check ./coverage folder after running suite
 - unit testing vs. system testing
   - what scale am I operating at?
   - how big are my changes?
