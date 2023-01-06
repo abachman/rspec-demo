@@ -7,7 +7,12 @@ require 'processor'
 # Question: what order do you think they'll appear in?
 
 describe Processor do
-  # before { skip }
+  before do
+    puts '>before'
+  end
+  after do
+    puts '>after'
+  end
   puts '>describe Processor'
 
   subject {
@@ -35,6 +40,9 @@ describe Processor do
       before do
         puts '>      before'
         expect(subject).to receive(:values).and_return([])
+      end
+      after do
+        puts '>      after'
       end
 
       it 'produces 0' do
