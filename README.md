@@ -23,11 +23,6 @@
 - order of operations (scopes)
   - Practical example: `rspec spec/calling_order_spec.rb`
 
-## Fighting with rspec + rubocop (incidental complexity)
-
-- Practical example: `rubocop spec/processor_spec.rb`
-- what is the actual goal of this tool?
-
 ## Advanced testing
 
 - code coverage
@@ -37,3 +32,8 @@
   - how big are my changes?
   - what's the **biggest** test I can write?
   - what's the **smallest** test I can write?
+
+## Fighting with rspec + rubocop (incidental complexity)
+
+- Practical example: `rubocop spec/processor_spec.rb`
+- what is the actual goal of this tool?
